@@ -19,7 +19,7 @@ export const charsReducer = (state = initialState, action) => {
     case (types.SUCCESS):
       return {
         ...state,
-        characters: action.payload,
+        characters: action.payload.results || [],
       }
     case (types.FAILURE):
       return {
