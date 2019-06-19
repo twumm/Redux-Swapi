@@ -5,17 +5,18 @@ import { CharacterList } from "../components";
 import { fetchCharacters } from '../actions/index'; // import actions
 
 class CharacterListView extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   componentDidMount() {
     this.props.fetchCharacters();
+    console.log(this.state)
   }
 
   render() {
     if (this.props.fetching) {
-      // return something here to indicate that you are fetching data
+      return <div>Data is loading</div>
     }
     return (
       <div className="CharactersList_wrapper">
@@ -27,8 +28,17 @@ class CharacterListView extends React.Component {
 
 // our mapStateToProps needs to have two properties inherited from state
 // the characters and the fetching boolean
+function mapStateToProps(state) {
+  return {
+    characters: state.charsReducer.characters,
+    fetching: state.charsReducer.fetching,
+  }
+}
+
+
 export default connect(
-  null /* mapStateToProps replaces null here */,
+  /* mapStateToProps replaces null here */
+  mapStateToProps,
   {
     fetchCharacters
   }
