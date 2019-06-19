@@ -34,15 +34,12 @@ const setFetchingState = (status) => {
 }
 
 export const fetchCharacters = () => dispatch => {
-  debugger
   dispatch(setFetchingState(true));
   axios.get('https://swapi.co/api/people')
     .then(response => {
-      console.log('response here' + response.data.results)
       dispatch(getCharacters(response.data))
     })
     .catch(error => {
-      debugger;
       dispatch(setFailure(error.message))
     })
     .finally(() => {
